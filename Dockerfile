@@ -30,4 +30,4 @@ RUN npm prune --production
 EXPOSE $PORT
 
 # Start the application on all interfaces with SPA fallback
-CMD ["sh", "-c", "http-server dist/highline-adventures-angular -p ${PORT:-8080} -a 0.0.0.0 --cors -c-1 --proxy http://localhost:${PORT:-8080}?"]
+CMD ["sh", "-c", "cd dist/highline-adventures-angular && http-server . -p ${PORT:-8080} -a 0.0.0.0 --cors -c-1 --proxy http://localhost:${PORT:-8080}?"]

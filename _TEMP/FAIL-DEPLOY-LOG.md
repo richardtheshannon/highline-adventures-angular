@@ -32,8 +32,8 @@ History
 
 highline-adventures-angular
 /
-77b9b3c
-Aug 28, 2025, 7:18 PM
+bd41451
+Aug 28, 2025, 7:21 PM
 Active
 
 highline-adventures-angular-production.up.railway.app
@@ -45,7 +45,7 @@ HTTP Logs
 Filter and search logs
 
 You reached the start of the range
-Aug 28, 2025, 7:18 PM
+Aug 28, 2025, 7:21 PM
 Starting Container
 Starting up http-server, serving dist/highline-adventures-angular
 http-server version: 14.1.1
@@ -60,7 +60,8 @@ Serve Brotli Files: false
 Default File Extension: none
 Available on:
   http://127.0.0.1:8080
-  http://10.250.11.246:8080
+  http://10.250.14.120:8080
+Unhandled requests will be served from: http://localhost:8080?
 Hit CTRL-C to stop the server
 
 
