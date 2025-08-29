@@ -1,0 +1,425 @@
+.activity-card {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 0.75rem 1rem;
+  background: var(--bg-card);
+  border: 1px solid var(--border-primary);
+  border-radius: 8px;
+  transition: all 0.2s ease;
+  cursor: pointer;
+  position: relative;
+
+  &:hover {
+    background: var(--bg-hover);
+    border-color: var(--border-secondary);
+    transform: translateX(2px);
+  }
+
+  &.overbooked {
+    border-left: 3px solid var(--status-error);
+  }
+
+  &.cancelled {
+    opacity: 0.6;
+    border-left: 3px solid var(--status-warning);
+  }
+}
+
+// Activity Type Indicator
+.activity-indicator {
+  width: 4px;
+  height: 32px;
+  border-radius: 2px;
+  flex-shrink: 0;
+}
+
+// Time Section
+.time-section {
+  min-width: 120px;
+  flex-shrink: 0;
+  
+  .time-range {
+    font-size: 0.875rem;
+    font-family: 'JetBrains Mono', monospace;
+    color: var(--text-primary);
+    font-weight: 500;
+  }
+  
+  .duration {
+    font-size: 0.75rem;
+    color: var(--text-tertiary);
+    margin-top: 0.125rem;
+  }
+}
+
+// Activity Info
+.activity-info {
+  flex: 1;
+  min-width: 0;
+  
+  .activity-name {
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: var(--text-primary);
+    margin-bottom: 0.25rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  
+  .activity-type {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.125rem 0.5rem;
+    background: var(--tag-bg);
+    border-radius: 4px;
+    font-size: 0.75rem;
+    color: var(--text-secondary);
+    font-weight: 500;
+  }
+}
+
+// Status Badge
+.status-section {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  
+  .status-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.25rem;
+    padding: 0.25rem 0.75rem;
+    border-radius: 12px;
+    font-size: 0.75rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.025em;
+    
+    &.upcoming {
+      background: rgba(24, 144, 255, 0.1);
+      color: var(--status-info);
+    }
+    
+    &.in-progress {
+      background: rgba(250, 173, 20, 0.1);
+      color: var(--status-warning);
+      
+      .status-dot {
+        width: 6px;
+        height: 6px;
+        background: currentColor;
+        border-radius: 50%;
+        animation: blink 2s infinite;
+      }
+    }
+    
+    &.completed {
+      background: rgba(82, 196, 26, 0.1);
+      color: var(--status-success);
+    }
+  }
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.3; }
+}
+
+// Capacity Section
+.capacity-section {
+  min-width: 140px;
+  flex-shrink: 0;
+  
+  .capacity-info {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 0.25rem;
+    
+    .capacity-text {
+      font-size: 0.75rem;
+      color: var(--text-tertiary);
+      font-family: 'JetBrains Mono', monospace;
+    }
+    
+    .capacity-percentage {
+      font-size: 0.75rem;
+      font-weight: 600;
+      font-family: 'JetBrains Mono', monospace;
+      
+      &.normal { color: var(--status-success); }
+      &.warning { color: var(--status-warning); }
+      &.danger { color: var(--status-error); }
+    }
+  }
+  
+  .capacity-bar {
+    height: 4px;
+    background: var(--border-primary);
+    border-radius: 2px;
+    overflow: hidden;
+    position: relative;
+    
+    .capacity-fill {
+      height: 100%;
+      border-radius: 2px;
+      transition: width 0.3s ease;
+      
+      &.normal { background: var(--status-success); }
+      &.warning { background: var(--status-warning); }
+      &.danger { background: var(--status-error); }
+    }
+  }
+}
+
+// Guest Count
+.guest-count {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.25rem 0.75rem;
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-primary);
+  border-radius: 6px;
+  
+  .guest-icon {
+    font-size: 0.875rem;
+    color: var(--text-tertiary);
+  }
+  
+  .guest-number {
+    font-size: 0.875rem;
+    font-weight: 600;
+    font-family: 'JetBrains Mono', monospace;
+    color: var(--text-primary);
+  }
+}
+
+// Tooltip
+.tooltip {
+  position: absolute;
+  bottom: calc(100% + 8px);
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--bg-tertiary);
+  border: 1px solid var(--border-secondary);
+  border-radius: 8px;
+  padding: 0.75rem;
+  min-width: 280px;
+  max-width: 400px;
+  z-index: 1000;
+  box-shadow: var(--shadow-lg);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.2s ease, visibility 0.2s ease;
+  pointer-events: none;
+  
+  &.show {
+    opacity: 1;
+    visibility: visible;
+  }
+  
+  h4 {
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 0.5rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid var(--border-primary);
+  }
+  
+  .guest-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.375rem;
+    max-height: 200px;
+    overflow-y: auto;
+    
+    .guest-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0.25rem 0;
+      font-size: 0.8125rem;
+      
+      .guest-name {
+        color: var(--text-secondary);
+        
+        &.cancelled {
+          color: var(--text-tertiary);
+          text-decoration: line-through;
+        }
+      }
+      
+      .guest-count {
+        font-family: 'JetBrains Mono', monospace;
+        font-weight: 500;
+        color: var(--text-primary);
+        
+        &.cancelled {
+          color: var(--status-warning);
+        }
+      }
+    }
+  }
+  
+  .no-guests {
+    font-size: 0.8125rem;
+    color: var(--text-tertiary);
+    font-style: italic;
+    text-align: center;
+    padding: 1rem 0;
+  }
+  
+  // Tooltip arrow
+  &::after {
+    content: '';
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 0;
+    height: 0;
+    border: 6px solid transparent;
+    border-top-color: var(--border-secondary);
+  }
+}
+
+// Responsive
+@media (max-width: 768px) {
+  .activity-card {
+    padding: 0.75rem;
+    gap: 0.75rem;
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    grid-template-rows: auto auto;
+    grid-template-areas: 
+      "time activity status"
+      "capacity capacity capacity";
+    align-items: center;
+  }
+  
+  .activity-border {
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 3px;
+    border-radius: 8px 0 0 8px;
+  }
+  
+  .time-section {
+    grid-area: time;
+    min-width: 80px;
+    
+    .time-range {
+      font-size: 0.75rem;
+      line-height: 1.2;
+    }
+  }
+  
+  .activity-info {
+    grid-area: activity;
+    min-width: 0;
+    
+    .activity-details {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 0.25rem;
+      
+      .guest-count {
+        font-size: 0.75rem;
+        font-family: 'JetBrains Mono', monospace;
+        color: var(--text-secondary);
+        font-weight: 500;
+      }
+      
+      .activity-name {
+        font-size: 0.75rem;
+        line-height: 1.2;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+    }
+  }
+  
+  .status-section {
+    grid-area: status;
+    justify-self: end;
+    
+    .status-badge {
+      padding: 0.125rem 0.5rem;
+      font-size: 0.625rem;
+    }
+  }
+  
+  .capacity-section {
+    grid-area: capacity;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-top: 0.25rem;
+    min-width: unset;
+    
+    .capacity-bar {
+      flex: 1;
+      height: 3px;
+    }
+    
+    .capacity-text {
+      font-size: 0.75rem;
+      font-family: 'JetBrains Mono', monospace;
+      color: var(--text-secondary);
+      white-space: nowrap;
+    }
+  }
+  
+  .tooltip {
+    left: 1rem;
+    right: 1rem;
+    transform: none;
+    width: auto;
+    
+    &::after {
+      left: 24px;
+    }
+  }
+}
+
+@media (max-width: 480px) {
+  .activity-card {
+    padding: 0.5rem;
+    gap: 0.5rem;
+    grid-template-columns: auto 1fr;
+    grid-template-rows: auto auto auto;
+    grid-template-areas: 
+      "time status"
+      "activity activity"
+      "capacity capacity";
+  }
+  
+  .time-section {
+    .time-range {
+      font-size: 0.6875rem;
+    }
+  }
+  
+  .activity-info .activity-details {
+    .guest-count,
+    .activity-name {
+      font-size: 0.6875rem;
+    }
+  }
+  
+  .capacity-section {
+    margin-top: 0.125rem;
+    
+    .capacity-text {
+      font-size: 0.6875rem;
+    }
+  }
+}

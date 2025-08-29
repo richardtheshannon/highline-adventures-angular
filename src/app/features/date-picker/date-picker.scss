@@ -1,0 +1,148 @@
+.date-picker-container {
+  margin-bottom: 1.5rem;
+  
+  .quick-filters {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+    
+    .filter-btn {
+      background: #1a1d23;
+      border: 1px solid #2d3748;
+      border-radius: 8px;
+      color: #e2e8f0;
+      padding: 0.5rem 1rem;
+      font-size: 0.875rem;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      box-shadow: 
+        inset 2px 2px 4px rgba(0, 0, 0, 0.3),
+        inset -2px -2px 4px rgba(255, 255, 255, 0.05);
+      
+      &:hover {
+        background: #2d3748;
+        transform: translateY(-1px);
+        box-shadow: 
+          inset 1px 1px 3px rgba(0, 0, 0, 0.2),
+          inset -1px -1px 3px rgba(255, 255, 255, 0.03);
+      }
+      
+      &.active {
+        background: #4a5568;
+        color: #ffffff;
+        box-shadow: 
+          inset 3px 3px 6px rgba(0, 0, 0, 0.4),
+          inset -3px -3px 6px rgba(255, 255, 255, 0.1);
+        transform: translateY(1px);
+      }
+      
+      &:focus {
+        outline: 2px solid #4299e1;
+        outline-offset: 2px;
+      }
+    }
+  }
+  
+  .custom-range {
+    background: #1a1d23;
+    border: 1px solid #2d3748;
+    border-radius: 12px;
+    padding: 1.5rem;
+    box-shadow: 
+      inset 2px 2px 4px rgba(0, 0, 0, 0.3),
+      inset -2px -2px 4px rgba(255, 255, 255, 0.05);
+    
+    .date-inputs {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+      margin-bottom: 1rem;
+      
+      @media (max-width: 640px) {
+        grid-template-columns: 1fr;
+      }
+      
+      .input-group {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+        
+        label {
+          color: #a0aec0;
+          font-size: 0.875rem;
+          font-weight: 500;
+        }
+        
+        .date-input {
+          background: #2d3748;
+          border: 1px solid #4a5568;
+          border-radius: 8px;
+          color: #e2e8f0;
+          padding: 0.75rem;
+          font-size: 0.875rem;
+          transition: all 0.3s ease;
+          box-shadow: 
+            inset 1px 1px 3px rgba(0, 0, 0, 0.2),
+            inset -1px -1px 3px rgba(255, 255, 255, 0.03);
+          
+          &:focus {
+            outline: none;
+            border-color: #4299e1;
+            background: #374151;
+            box-shadow: 
+              inset 2px 2px 4px rgba(0, 0, 0, 0.3),
+              0 0 0 2px rgba(66, 153, 225, 0.3);
+          }
+          
+          &::-webkit-calendar-picker-indicator {
+            filter: invert(1);
+            cursor: pointer;
+          }
+        }
+      }
+    }
+    
+    .actions {
+      display: flex;
+      justify-content: flex-end;
+      gap: 0.5rem;
+      
+      .clear-btn {
+        background: #e53e3e;
+        border: 1px solid #c53030;
+        border-radius: 6px;
+        color: #ffffff;
+        padding: 0.5rem 1rem;
+        font-size: 0.875rem;
+        font-weight: 500;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        box-shadow: 
+          inset 2px 2px 4px rgba(255, 255, 255, 0.1),
+          inset -2px -2px 4px rgba(0, 0, 0, 0.2);
+        
+        &:hover {
+          background: #c53030;
+          transform: translateY(-1px);
+          box-shadow: 
+            inset 1px 1px 3px rgba(255, 255, 255, 0.08),
+            inset -1px -1px 3px rgba(0, 0, 0, 0.15);
+        }
+        
+        &:active {
+          transform: translateY(1px);
+          box-shadow: 
+            inset 3px 3px 6px rgba(0, 0, 0, 0.3),
+            inset -3px -3px 6px rgba(255, 255, 255, 0.05);
+        }
+        
+        &:focus {
+          outline: 2px solid #e53e3e;
+          outline-offset: 2px;
+        }
+      }
+    }
+  }
+}

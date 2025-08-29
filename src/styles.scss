@@ -1,0 +1,268 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
+
+// Default theme (dark)
+:root {
+  // Main backgrounds
+  --bg-primary: #0d0d0d;
+  --bg-secondary: #141414;
+  --bg-tertiary: #1a1a1a;
+  --bg-card: #0f0f0f;
+  --bg-hover: #1f1f1f;
+  
+  // Borders
+  --border-primary: #262626;
+  --border-secondary: #333333;
+  --border-subtle: #1a1a1a;
+  
+  // Text colors
+  --text-primary: #ffffff;
+  --text-secondary: #a0a0a0;
+  --text-tertiary: #6b6b6b;
+  --text-muted: #4a4a4a;
+  
+  // Status colors
+  --status-success: #52c41a;
+  --status-warning: #faad14;
+  --status-error: #ff4d4f;
+  --status-info: #1890ff;
+  --status-purple: #722ed1;
+  
+  // Accent colors
+  --accent-green: #52c41a;
+  --accent-blue: #1890ff;
+  --accent-blue-hover: #40a9ff;
+  --accent-orange: #fa8c16;
+  --accent-purple: #722ed1;
+  --accent-cyan: #13c2c2;
+  --accent-pink: #eb2f96;
+  --accent-yellow: #fadb14;
+  
+  // UI elements
+  --tag-bg: rgba(255, 255, 255, 0.08);
+  --tag-hover: rgba(255, 255, 255, 0.12);
+  --button-bg: #262626;
+  --button-hover: #333333;
+  
+  // Shadows
+  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.3);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.3);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.3);
+}
+
+// Light theme
+.light-theme {
+  // Main backgrounds
+  --bg-primary: #ffffff;
+  --bg-secondary: #f5f5f5;
+  --bg-tertiary: #fafafa;
+  --bg-card: #ffffff;
+  --bg-hover: #f0f0f0;
+  
+  // Borders
+  --border-primary: #d9d9d9;
+  --border-secondary: #bfbfbf;
+  --border-subtle: #f0f0f0;
+  
+  // Text colors
+  --text-primary: #000000;
+  --text-secondary: #595959;
+  --text-tertiary: #8c8c8c;
+  --text-muted: #bfbfbf;
+  
+  // Status colors (keep same for consistency)
+  --status-success: #52c41a;
+  --status-warning: #faad14;
+  --status-error: #ff4d4f;
+  --status-info: #1890ff;
+  --status-purple: #722ed1;
+  
+  // Accent colors (keep same for consistency)
+  --accent-green: #52c41a;
+  --accent-blue: #1890ff;
+  --accent-blue-hover: #40a9ff;
+  --accent-orange: #fa8c16;
+  --accent-purple: #722ed1;
+  --accent-cyan: #13c2c2;
+  --accent-pink: #eb2f96;
+  --accent-yellow: #fadb14;
+  
+  // UI elements
+  --tag-bg: rgba(0, 0, 0, 0.06);
+  --tag-hover: rgba(0, 0, 0, 0.1);
+  --button-bg: #f5f5f5;
+  --button-hover: #e6e6e6;
+  
+  // Shadows
+  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+}
+
+// Dark theme (explicit class for consistency)
+.dark-theme {
+  // Main backgrounds
+  --bg-primary: #0d0d0d;
+  --bg-secondary: #141414;
+  --bg-tertiary: #1a1a1a;
+  --bg-card: #0f0f0f;
+  --bg-hover: #1f1f1f;
+  
+  // Borders
+  --border-primary: #262626;
+  --border-secondary: #333333;
+  --border-subtle: #1a1a1a;
+  
+  // Text colors
+  --text-primary: #ffffff;
+  --text-secondary: #a0a0a0;
+  --text-tertiary: #6b6b6b;
+  --text-muted: #4a4a4a;
+  
+  // Status colors
+  --status-success: #52c41a;
+  --status-warning: #faad14;
+  --status-error: #ff4d4f;
+  --status-info: #1890ff;
+  --status-purple: #722ed1;
+  
+  // Accent colors
+  --accent-green: #52c41a;
+  --accent-blue: #1890ff;
+  --accent-blue-hover: #40a9ff;
+  --accent-orange: #fa8c16;
+  --accent-purple: #722ed1;
+  --accent-cyan: #13c2c2;
+  --accent-pink: #eb2f96;
+  --accent-yellow: #fadb14;
+  
+  // UI elements
+  --tag-bg: rgba(255, 255, 255, 0.08);
+  --tag-hover: rgba(255, 255, 255, 0.12);
+  --button-bg: #262626;
+  --button-hover: #333333;
+  
+  // Shadows
+  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.3);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.3);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.3);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  height: 100%;
+  overflow-x: hidden;
+}
+
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  font-size: 14px;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+// Typography
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 600;
+  line-height: 1.2;
+}
+
+h1 { font-size: 2rem; }
+h2 { font-size: 1.5rem; }
+h3 { font-size: 1.25rem; }
+h4 { font-size: 1.125rem; }
+h5 { font-size: 1rem; }
+h6 { font-size: 0.875rem; }
+
+// Monospace for numbers and data
+.mono, 
+.data-value,
+code {
+  font-family: 'JetBrains Mono', 'Courier New', monospace;
+  font-size: 0.875rem;
+}
+
+// Scrollbar styling
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg-secondary);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--border-secondary);
+  border-radius: 4px;
+  
+  &:hover {
+    background: var(--text-tertiary);
+  }
+}
+
+// Selection
+::selection {
+  background: rgba(24, 144, 255, 0.3);
+  color: var(--text-primary);
+}
+
+// Focus styles
+:focus-visible {
+  outline: 2px solid var(--accent-blue);
+  outline-offset: 2px;
+}
+
+// Transitions - including theme switching
+* {
+  transition: background-color 0.3s ease, 
+              border-color 0.3s ease,
+              color 0.3s ease,
+              box-shadow 0.3s ease;
+}
+
+// Theme transition for body
+body {
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+// Utility classes
+.text-muted { color: var(--text-tertiary); }
+.text-secondary { color: var(--text-secondary); }
+.text-success { color: var(--status-success); }
+.text-warning { color: var(--status-warning); }
+.text-error { color: var(--status-error); }
+.text-info { color: var(--status-info); }
+
+.bg-success { background: var(--status-success); }
+.bg-warning { background: var(--status-warning); }
+.bg-error { background: var(--status-error); }
+.bg-info { background: var(--status-info); }
+
+// Flexbox utilities
+.flex { display: flex; }
+.flex-col { flex-direction: column; }
+.items-center { align-items: center; }
+.justify-center { justify-content: center; }
+.justify-between { justify-content: space-between; }
+.gap-1 { gap: 0.25rem; }
+.gap-2 { gap: 0.5rem; }
+.gap-3 { gap: 0.75rem; }
+.gap-4 { gap: 1rem; }
+
+// Spacing utilities
+.p-1 { padding: 0.25rem; }
+.p-2 { padding: 0.5rem; }
+.p-3 { padding: 0.75rem; }
+.p-4 { padding: 1rem; }
+.m-1 { margin: 0.25rem; }
+.m-2 { margin: 0.5rem; }
+.m-3 { margin: 0.75rem; }
+.m-4 { margin: 1rem; }

@@ -1,0 +1,212 @@
+<div class="dashboard">
+  <header class="header">
+    <div class="live-indicator">
+      <div class="live-dot"></div>
+      <div class="live-time">
+        <span class="live-prefix">Live Monitoring for: </span>
+        <span class="time-display">{{ getFormattedTime() }}</span>
+      </div>
+    </div>
+    <app-theme-toggle></app-theme-toggle>
+  </header>
+
+  <!-- Fixed Hamburger Menu (Bottom Right) -->
+  <button class="hamburger-menu-fixed" (click)="toggleSidebar()" [class.active]="sidebarOpen">
+    <span class="hamburger-line"></span>
+    <span class="hamburger-line"></span>
+    <span class="hamburger-line"></span>
+  </button>
+
+
+  <main class="content">
+    <div *ngIf="loading" class="loading">
+      <div class="spinner"></div>
+      <p>Loading calendar events...</p>
+    </div>
+
+    <div *ngIf="error" class="error">
+      <p>{{ error }}</p>
+    </div>
+
+    <div *ngIf="!loading && !error" class="manifest-content">
+      <!-- Today Section -->
+      <section class="day-section" *ngIf="shouldShowTodaySection()">
+        <div class="day-header">
+          <h2>{{ getDayName(0) }}</h2>
+        </div>
+        
+        <!-- Stats Cards -->
+        <div class="stats-grid" *ngIf="todayStats">
+          <div class="stat-card">
+            <div class="stat-info">
+              <div class="stat-label">Total Guests</div>
+              <div class="stat-number">{{ todayStats.totalGuests }}</div>
+            </div>
+          </div>
+          <div class="stat-card active">
+            <div class="stat-info">
+              <div class="stat-label">Active Now</div>
+              <div class="stat-number">{{ todayStats.activeNow }}</div>
+            </div>
+          </div>
+          <div class="stat-card capacity">
+            <div class="stat-info">
+              <div class="stat-label">Capacity Issues</div>
+              <div class="stat-number">{{ todayStats.capacityIssues }}</div>
+            </div>
+          </div>
+          <div class="stat-card cancellations">
+            <div class="stat-info">
+              <div class="stat-label">Cancellations</div>
+              <div class="stat-number">{{ todayStats.cancellations }}</div>
+            </div>
+          </div>
+        </div>
+        
+
+        <!-- Alert Banner -->
+        <div class="alerts" *ngIf="todayStats && todayStats.cancellations > 0">
+          <div class="alert-banner cancellations">
+            <span class="alert-icon">⚠️</span>
+            <span>ALERT: {{ todayStats.cancellations }} cancellations</span>
+          </div>
+        </div>
+
+        <!-- Activity Cards -->
+        <div class="activities-list">
+          <app-activity-card 
+            *ngFor="let event of filteredTodayEvents" 
+            [event]="event"
+            (activityClick)="openActivityDrawer($event)">
+          </app-activity-card>
+          <div *ngIf="filteredTodayEvents.length === 0" class="no-events">
+            No activities match the current filters
+          </div>
+        </div>
+      </section>
+
+      <!-- Tomorrow Section -->
+      <section class="day-section" *ngIf="shouldShowTomorrowSection()">
+        <div class="day-header">
+          <h2>{{ getDayName(1) }}</h2>
+        </div>
+        
+        <!-- Alert Banner -->
+        <div class="alerts" *ngIf="tomorrowStats && tomorrowStats.cancellations > 0">
+          <div class="alert-banner cancellations">
+            <span class="alert-icon">⚠️</span>
+            <span>ALERT: {{ tomorrowStats.cancellations }} cancellations</span>
+          </div>
+        </div>
+        
+        <!-- Stats Cards -->
+        <div class="stats-grid" *ngIf="tomorrowStats">
+          <div class="stat-card">
+            <div class="stat-info">
+              <div class="stat-label">Total Guests</div>
+              <div class="stat-number">{{ tomorrowStats.totalGuests }}</div>
+            </div>
+          </div>
+          <div class="stat-card active">
+            <div class="stat-info">
+              <div class="stat-label">Active Now</div>
+              <div class="stat-number">{{ tomorrowStats.activeNow }}</div>
+            </div>
+          </div>
+          <div class="stat-card capacity">
+            <div class="stat-info">
+              <div class="stat-label">Capacity Issues</div>
+              <div class="stat-number">{{ tomorrowStats.capacityIssues }}</div>
+            </div>
+          </div>
+          <div class="stat-card cancellations">
+            <div class="stat-info">
+              <div class="stat-label">Cancellations</div>
+              <div class="stat-number">{{ tomorrowStats.cancellations }}</div>
+            </div>
+          </div>
+        </div>
+        
+
+        <!-- Activity Cards -->
+        <div class="activities-list">
+          <app-activity-card 
+            *ngFor="let event of filteredTomorrowEvents" 
+            [event]="event"
+            (activityClick)="openActivityDrawer($event)">
+          </app-activity-card>
+          <div *ngIf="filteredTomorrowEvents.length === 0" class="no-events">
+            No activities match the current filters
+          </div>
+        </div>
+      </section>
+
+      <!-- Day After Section -->
+      <section class="day-section" *ngIf="shouldShowDayAfterSection()">
+        <div class="day-header">
+          <h2>{{ getDayName(2) }}</h2>
+        </div>
+        
+        <!-- Stats Cards -->
+        <div class="stats-grid" *ngIf="dayAfterStats">
+          <div class="stat-card">
+            <div class="stat-info">
+              <div class="stat-label">Total Guests</div>
+              <div class="stat-number">{{ dayAfterStats.totalGuests }}</div>
+            </div>
+          </div>
+          <div class="stat-card active">
+            <div class="stat-info">
+              <div class="stat-label">Active Now</div>
+              <div class="stat-number">{{ dayAfterStats.activeNow }}</div>
+            </div>
+          </div>
+          <div class="stat-card capacity">
+            <div class="stat-info">
+              <div class="stat-label">Capacity Issues</div>
+              <div class="stat-number">{{ dayAfterStats.capacityIssues }}</div>
+            </div>
+          </div>
+          <div class="stat-card cancellations">
+            <div class="stat-info">
+              <div class="stat-label">Cancellations</div>
+              <div class="stat-number">{{ dayAfterStats.cancellations }}</div>
+            </div>
+          </div>
+        </div>
+        
+
+        <!-- Activity Cards -->
+        <div class="activities-list">
+          <app-activity-card 
+            *ngFor="let event of filteredDayAfterEvents" 
+            [event]="event"
+            (activityClick)="openActivityDrawer($event)">
+          </app-activity-card>
+          <div *ngIf="filteredDayAfterEvents.length === 0" class="no-events">
+            No activities match the current filters
+          </div>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <!-- Activity Detail Drawer -->
+  <app-activity-detail-drawer
+    [isOpen]="activityDrawerOpen"
+    [selectedActivity]="selectedActivity"
+    (closeDrawer)="closeActivityDrawer()">
+  </app-activity-detail-drawer>
+
+  <!-- Sidebar -->
+  <app-sidebar
+    [isOpen]="sidebarOpen"
+    [filters]="sidebarFilters"
+    (closeSidebar)="closeSidebar()"
+    (filterChange)="onSidebarFilterChange($event)"
+    (dateRangeChange)="onDateRangeChange($event)"
+    (quickFilterChange)="onQuickFilterChange($event)"
+    (toggleAdvancedFilters)="toggleAdvancedFilters()">
+  </app-sidebar>
+
+</div>

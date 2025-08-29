@@ -1,0 +1,66 @@
+<div class="drawer-overlay" [class.open]="isOpen" (click)="onOverlayClick($event)">
+  <div class="activity-drawer" [class.open]="isOpen">
+    <div class="drawer-header">
+      <div class="activity-title-section" *ngIf="selectedActivity">
+        <div class="activity-color-bar" [style.background-color]="selectedActivity.activityInfo?.color"></div>
+        <div class="title-content">
+          <h2 class="activity-title">{{ selectedActivity.activityInfo?.displayName || 'Activity Details' }}</h2>
+          <div class="activity-subtitle">{{ selectedActivity.summary }}</div>
+        </div>
+      </div>
+      <button class="close-btn" (click)="closeDrawer.emit()">
+        <span class="close-icon">×</span>
+      </button>
+    </div>
+
+    <div class="drawer-content" *ngIf="selectedActivity">
+      <!-- Status and Basic Info -->
+      <section class="info-section">
+        <div class="status-row">
+          <div class="status-badge" [ngClass]="getStatusClass()">
+            {{ selectedActivity.status?.toUpperCase() }}
+          </div>
+          <div class="date-info">{{ getFormattedDate() }}</div>
+        </div>
+      </section>
+
+      <!-- Schedule & Capacity Information -->
+      <section class="info-section">
+        <h3 class="section-title">Schedule & Capacity</h3>
+        <div class="info-item">
+          <div class="info-label">Time & Capacity</div>
+          <div class="info-value">{{ getCapacityAndSchedule() }}</div>
+        </div>
+        <div class="capacity-bar-container" *ngIf="selectedActivity.maxCapacity">
+          <div class="capacity-bar">
+            <div class="capacity-fill" 
+                 [style.width.%]="getCapacityPercentage()"
+                 [class]="getCapacityStatus()">
+            </div>
+          </div>
+          <div class="capacity-status" *ngIf="isOverbooked()" class="overbooked">
+            ⚠️ OVERBOOKED
+          </div>
+        </div>
+      </section>
+
+      <!-- Guest Information -->
+      <section class="info-section" *ngIf="selectedActivity.guests && selectedActivity.guests.guests.length > 0">
+        <h3 class="section-title">Guests</h3>
+        <div class="guest-list">
+          <div class="guest-item" *ngFor="let guest of selectedActivity.guests.guests" 
+               [class.cancelled]="guest.isCancelled">
+            <div class="guest-info">
+              <span class="guest-name">{{ guest.name }}</span>
+              <span class="guest-count">{{ guest.count }}{{ guest.count > 1 ? ' guests' : ' guest' }}</span>
+            </div>
+            <div class="guest-status" *ngIf="guest.isCancelled">
+              <span class="cancelled-badge">CANCELLED</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+    </div>
+  </div>
+</div>

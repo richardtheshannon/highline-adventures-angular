@@ -1,0 +1,82 @@
+<div class="activity-card" 
+     [class.overbooked]="isOverbooked()"
+     [class.has-cancellations]="hasCancellations()"
+     (click)="onActivityClick()">
+  
+  <!-- Left Border Color Indicator -->
+  <div class="activity-border" [style.background-color]="getActivityColor()"></div>
+  
+  <!-- Time Display -->
+  <div class="time-section">
+    <div class="time-range">{{ getTimeRange() }}</div>
+  </div>
+  
+  <!-- Activity Info -->
+  <div class="activity-info">
+    <div class="activity-details">
+      <span class="guest-count" *ngIf="event.currentCapacity && event.maxCapacity">{{ event.currentCapacity }}/{{ event.maxCapacity }}</span>
+      <span class="activity-name" [style.color]="getActivityColor()">
+        {{ event.activityInfo?.displayName || 'Activity' }}
+      </span>
+    </div>
+  </div>
+  
+  <!-- Status -->
+  <div class="status-section">
+    <div class="status-badge" [ngClass]="getStatusClass()">
+      {{ event.status?.toUpperCase() }}
+    </div>
+  </div>
+  
+  <!-- Capacity Bar -->
+  <div class="capacity-section" *ngIf="event.currentCapacity && event.maxCapacity">
+    <div class="capacity-bar">
+      <div class="capacity-fill" 
+           [style.width.%]="(event.currentCapacity / event.maxCapacity) * 100"
+           [style.background-color]="getActivityColor()">
+      </div>
+    </div>
+    <div class="capacity-text">
+      {{ event.currentCapacity }}/{{ event.maxCapacity }}
+    </div>
+  </div>
+  
+  <!-- Tooltip -->
+  <div class="tooltip" *ngIf="showTooltip" (click)="$event.stopPropagation()">
+    <div class="tooltip-header">
+      <h3>{{ event.summary }}</h3>
+      <button class="close-btn" (click)="toggleTooltip()">×</button>
+    </div>
+    
+    <div class="tooltip-content">
+      <div class="detail-row">
+        <strong>Time:</strong> {{ getFormattedTime() }}
+      </div>
+      
+      <div class="detail-row" *ngIf="event.activityInfo">
+        <strong>Activity:</strong> {{ event.activityInfo.displayName }}
+      </div>
+      
+      <div class="detail-row" *ngIf="event.currentCapacity && event.maxCapacity">
+        <strong>Capacity:</strong> 
+        {{ event.currentCapacity }} / {{ event.maxCapacity }}
+        <span *ngIf="isOverbooked()" class="overbooked-text">(OVERBOOKED)</span>
+      </div>
+      
+      <div *ngIf="guestDetailsLoaded && detailedGuestInfo && detailedGuestInfo.processedGuests.length > 0" class="guests-section">
+        <strong>Guests:</strong>
+        <div *ngIf="!guestDetailsLoaded" class="loading-guests">Loading guest details...</div>
+        <ul class="guest-list" *ngIf="guestDetailsLoaded">
+          <li *ngFor="let guest of detailedGuestInfo.processedGuests" 
+              [class.cancelled]="guest.isCancelled">
+            {{ guest.count }}x {{ guest.formattedName }}
+            <span *ngIf="guest.isCancelled" class="cancelled-label">CANCELLED</span>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Overlay when tooltip is open -->
+  <div class="tooltip-overlay" *ngIf="showTooltip" (click)="toggleTooltip()"></div>
+</div>

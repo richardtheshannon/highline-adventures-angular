@@ -1,0 +1,71 @@
+<div class="export-overlay" *ngIf="isOpen" (click)="close()">
+  <div class="export-dialog" (click)="$event.stopPropagation()">
+    <div class="dialog-header">
+      <h2>Export Data</h2>
+      <button class="close-btn" (click)="close()" type="button">×</button>
+    </div>
+
+    <div class="dialog-content">
+      <!-- Export Summary -->
+      <div class="export-summary">
+        <h3>Export Summary</h3>
+        <div class="summary-stats">
+          <div class="summary-item">
+            <span class="label">Date Range:</span>
+            <span class="value">{{ getEventSummary().dateRange }}</span>
+          </div>
+          <div class="summary-item">
+            <span class="label">Total Activities:</span>
+            <span class="value">{{ getEventSummary().totalEvents }}</span>
+          </div>
+          <div class="summary-item">
+            <span class="label">Total Guests:</span>
+            <span class="value">{{ getEventSummary().totalGuests }}</span>
+          </div>
+          <div class="summary-item">
+            <span class="label">Active Guests:</span>
+            <span class="value">{{ getEventSummary().activeGuests }}</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Export Options -->
+      <div class="export-options">
+        <h3>Choose Export Format</h3>
+        <div class="options-grid">
+          <div 
+            *ngFor="let option of exportOptions" 
+            class="export-option"
+            [class.disabled]="isExporting"
+            (click)="!isExporting && exportData(option.id)">
+            
+            <div class="option-icon">{{ option.icon }}</div>
+            <div class="option-info">
+              <h4>{{ option.title }}</h4>
+              <p>{{ option.description }}</p>
+            </div>
+            <div class="option-action">
+              <div *ngIf="isExporting" class="spinner-small"></div>
+              <span *ngIf="!isExporting">Export</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Export Status -->
+      <div *ngIf="exportMessage" class="export-status">
+        <div class="status-message" 
+             [class.success]="exportMessage.includes('successfully')"
+             [class.error]="exportMessage.includes('Error') || exportMessage.includes('failed')">
+          {{ exportMessage }}
+        </div>
+      </div>
+    </div>
+
+    <div class="dialog-footer">
+      <button class="cancel-btn" (click)="close()" type="button">
+        Close
+      </button>
+    </div>
+  </div>
+</div>

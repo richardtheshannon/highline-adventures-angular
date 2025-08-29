@@ -1,0 +1,73 @@
+<div class="sidebar-overlay" [class.open]="isOpen" (click)="onOverlayClick($event)">
+  <div class="sidebar" [class.open]="isOpen">
+    <div class="sidebar-header">
+      <h2>Filters & Settings</h2>
+      <button class="close-btn" (click)="closeSidebar.emit()">
+        <span class="close-icon">×</span>
+      </button>
+    </div>
+
+    <div class="sidebar-content">
+      <!-- Notifications Toggle -->
+      <section class="filter-section">
+        <h3>Notifications</h3>
+        <div class="notification-section">
+          <app-notification-toggle></app-notification-toggle>
+        </div>
+      </section>
+
+      <!-- Advanced Date Range -->
+      <section class="filter-section">
+        <div class="section-header">
+          <h3>Date Range</h3>
+          <button class="toggle-btn" (click)="onToggleAdvanced()">
+            {{ filters.showAdvancedFilters ? 'Hide' : 'Show' }} Advanced
+          </button>
+        </div>
+        
+        <app-date-picker
+          *ngIf="filters.showAdvancedFilters"
+          [initialRange]="filters.currentDateRange || { startDate: null, endDate: null }"
+          (dateRangeChange)="onDateRangeChange($event)"
+          (quickFilterChange)="onQuickFilterChange($event)">
+        </app-date-picker>
+      </section>
+
+      <!-- Global Filters -->
+      <section class="filter-section">
+        <h3>Activity Filters</h3>
+        <p class="filter-info" *ngIf="filters.availableTypes.length > 1">
+          Showing {{ filters.availableTypes.length - 1 }} {{ filters.availableTypes.length - 1 === 1 ? 'activity' : 'activities' }} in current view
+        </p>
+        <div class="filter-group">
+          <label>Activity Type</label>
+          <div class="filter-pills">
+            <button 
+              *ngFor="let type of filters.availableTypes"
+              class="filter-pill"
+              [class.active]="(filters.globalFilters.type === 'all' && type === 'All Types') || filters.globalFilters.type === type"
+              (click)="onFilterChange('global', 'type', type)">
+              {{ type }}
+            </button>
+          </div>
+        </div>
+        
+        <div class="filter-group">
+          <label>Status</label>
+          <div class="filter-pills">
+            <button 
+              *ngFor="let status of filters.availableStatuses"
+              class="filter-pill status-pill"
+              [class.active]="(filters.globalFilters.status === 'all' && status === 'All Statuses') || filters.globalFilters.status === status"
+              [class.completed]="status === 'Completed'"
+              [class.in-progress]="status === 'In Progress'"
+              [class.upcoming]="status === 'Upcoming'"
+              (click)="onFilterChange('global', 'status', status)">
+              {{ status }}
+            </button>
+          </div>
+        </div>
+      </section>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,19 @@
+export const environment = {
+  production: false,
+  firebase: {
+    apiKey: 'AIzaSyD30vJavMZl5S6HJrs18-slnpiKsawz1gw',
+    authDomain: 'daily-mainfest.firebaseapp.com',
+    projectId: 'daily-mainfest',
+    storageBucket: 'daily-mainfest.appspot.com',
+    messagingSenderId: '123456789',
+    appId: 'your-firebase-app-id'
+  },
+  googleCalendar: {
+    apiKey: 'AIzaSyD30vJavMZl5S6HJrs18-slnpiKsawz1gw',
+    calendarId: 'richard@highlineadventures.com'
+  },
+  vapid: {
+    publicKey: 'BGS4tXQG9Tzi9fiwQecOGfrjkyI6WLD_m92EdPd89j9S1-aP2eU6qzso3uY_9pk8kBiOIeK_gQ1e6iz-hLYTalI'
+  },
+  functionsBaseUrl: 'https://us-central1-daily-mainfest.cloudfunctions.net'
+};
