@@ -9,7 +9,7 @@ export const environment = {
     appId: 'your-firebase-app-id'
   },
   googleCalendar: {
-    apiKey: 'PLACEHOLDER_FOR_LOCAL_DEV',
+    apiKey: '641676493278-s9s0lbc1l030fipc4fie49di599vra2b.apps.googleusercontent.com',
     calendarId: 'richard@highlineadventures.com'
   },
   vapid: {
