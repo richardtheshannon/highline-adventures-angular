@@ -20,8 +20,8 @@ RUN sed -i "s/\${GOOGLE_CALENDAR_API_KEY}/${GOOGLE_CALENDAR_API_KEY}/g" src/envi
 # Build the Angular app
 RUN npm run build
 
-# Install serve globally for production
-RUN npm install -g serve
+# Install http-server globally for production (better Railway compatibility)
+RUN npm install -g http-server
 
 # Remove dev dependencies to reduce image size
 RUN npm prune --production
@@ -30,4 +30,4 @@ RUN npm prune --production
 EXPOSE $PORT
 
 # Start the application on all interfaces
-CMD ["sh", "-c", "serve dist/highline-adventures-angular -s -n -p ${PORT:-8080}"]
+CMD ["sh", "-c", "http-server dist/highline-adventures-angular -p ${PORT:-8080} -a 0.0.0.0 --cors -c-1"]
