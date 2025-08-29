@@ -30,4 +30,4 @@ RUN npm prune --production
 EXPOSE $PORT
 
 # Start the application
-CMD ["sh", "-c", "serve dist/highline-adventures-angular -s -n -l ${PORT:-3000}"]
+CMD ["sh", "-c", "serve dist/highline-adventures-angular -s -n -p $PORT"]
