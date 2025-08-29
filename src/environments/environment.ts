@@ -1,7 +1,7 @@
 export const environment = {
   production: false,
   firebase: {
-    apiKey: 'AIzaSyD30vJavMZl5S6HJrs18-slnpiKsawz1gw',
+    apiKey: 'PLACEHOLDER_FOR_LOCAL_DEV',
     authDomain: 'daily-mainfest.firebaseapp.com',
     projectId: 'daily-mainfest',
     storageBucket: 'daily-mainfest.appspot.com',
@@ -9,7 +9,7 @@ export const environment = {
     appId: 'your-firebase-app-id'
   },
   googleCalendar: {
-    apiKey: 'AIzaSyD30vJavMZl5S6HJrs18-slnpiKsawz1gw',
+    apiKey: 'PLACEHOLDER_FOR_LOCAL_DEV',
     calendarId: 'richard@highlineadventures.com'
   },
   vapid: {
