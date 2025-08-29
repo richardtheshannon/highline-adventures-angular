@@ -30,4 +30,4 @@ RUN npm prune --production
 EXPOSE $PORT
 
 # Start the application on all interfaces
-CMD ["sh", "-c", "serve dist/highline-adventures-angular -s -n -l ${PORT:-8080} --host 0.0.0.0"]
+CMD ["sh", "-c", "serve dist/highline-adventures-angular -s -n -p ${PORT:-8080}"]
