@@ -21,107 +21,158 @@ Deployments
 Variables
 Metrics
 Settings
-highline-adventures-angular-production.up.railway.app
-us-west2
-1 Replica
+Filter settings
+Filter Settings...
 
-
-
-
-History
-
-highline-adventures-angular
 /
-7aea154
-Aug 28, 2025, 7:36 PM
-Active
+Source
+Source Repo
+richardtheshannon/highline-adventures-angular
 
+
+
+Disconnect
+Add Root Directory (used for build and deploy steps. Docs↗)
+Branch connected to production
+Changes made to this GitHub branch will be automatically pushed to this environment.
+master
+
+Disconnect
+Wait for CI
+Trigger deployments after all GitHub actions have completed successfully.
+
+Networking
+Public Networking
+Access your application over HTTP with the following domains
 highline-adventures-angular-production.up.railway.app
+Port 8081
 
-Details
-Build Logs
-Deploy Logs
-HTTP Logs
-Search build logs
+ · 
+Metal Edge
 
-You reached the start of the range
-Aug 28, 2025, 7:36 PM
- 
-[Region: us-west1]
-=========================
-Using Detected Dockerfile
-=========================
 
-context: hvv4-FmM0
 
-internal
-load build definition from Dockerfile
-0ms
 
-internal
-load metadata for docker.io/library/node:22.12.0-alpine
-271ms
+Domain
+highline-adventures-angular-production
+.up.railway.app
 
-internal
-load .dockerignore
-0ms
+Custom port
+Enter the port your app is listening on
 
-[ 1/10] FROM docker.io/library/node:22.12.0-alpine@sha256:51eff88af6dff26f59316b6e356188ffa2c422bd3c3b76f2556a2e7e89d080bd
-6ms
+Target port
+8081
+Domain Available!
 
-internal
-load build context
-0ms
 
-[ 4/10] RUN npm ci cached
-0ms
+Cancel
 
-[ 3/10] COPY package*.json ./ cached
-0ms
+Update
 
-[ 2/10] WORKDIR /app cached
-0ms
+Custom Domain
 
-[ 5/10] COPY . .
-150ms
+TCP Proxy
+Private Networking
+Communicate with this service from within the Railway network.
+highline-adventures-angular.railway.internal
+IPv6
 
-[ 6/10] RUN sed -i "s/${FIREBASE_API_KEY}/98j34f9493uh4938h4/g" src/environments/environment.prod.ts
-83ms
 
-[ 7/10] RUN sed -i "s/${GOOGLE_CALENDAR_API_KEY}/AIzaSyD30vJavMZl5S6HJrs18-slnpiKsawz1gw/g" src/environments/environment.prod.ts
-96ms
+Ready to talk privately ·
+You can also simply call me
+highline-adventures-angular
+.
 
-[ 8/10] RUN npm run build
-6s
-Output location: /app/dist/highline-adventures-angular
+DNS
+highline-adventures-angular
+.railway.internal
 
-[ 9/10] RUN npm install -g http-server
-1s
-run `npm fund` for details
+Endpoint name available!
 
+
+Cancel
+
+Update
+Static Outbound IPs
+This will assign a permanent IP address which your service will use for outbound traffic, however it cannot be used for inbound traffic.
+
+Build
+Builder
+
+Dockerfile
+
+Automatically Detected
+
+Build with a Dockerfile using BuildKit. Docs↗
+
+Watch Paths
+Gitignore-style rules to trigger a new deployment based on what file paths have changed. Docs↗
+
+Watch Paths
+Deploy
+Custom Start Command
+Command that will be run to start new deployments. Docs↗
+
+Start Command
+Add pre-deploy step (Docs↗)
+Regions
+Configure how many instances of this service are deployed in each region.
+US West (California, USA)
+
+Replicas
 1
-RUN npm prune --production
-2s
-npm warn config production Use `--omit=dev` instead.
+Instance
 
-up to date, audited 256 packages in 3s
+Add Region
+Teardown
+Configure old deployment termination when a new one is started. Docs↗
 
-48 packages are looking for funding
-  run `npm fund` for details
+Resource Limits
+Max amount of vCPU and Memory to allocate to each replica for this service.
+CPU: 32 vCPU
 
-3 low severity vulnerabilities
+Plan limit: 32 vCPU
 
-To address all issues (including breaking changes), run:
-  npm audit fix --force
+Memory: 32 GB
 
-Run `npm audit` for details.
+Plan limit: 32 GB
 
-auth
-sharing credentials for production-us-west2.railway-registry.com
-1ms
-Build time: 30.95 seconds
-You reached the end of the range
-Aug 28, 2025, 7:37 PM
+Increase your resources
+Cron Schedule
+Run the service according to the specified cron schedule.
+
+Cron Schedule
+Healthcheck Path
+Endpoint to be called before a deploy completes to ensure the new deployment is live. Docs↗
+
+Healthcheck Path
+Serverless
+Containers will scale down to zero and then scale up based on traffic. Requests while the container is sleeping will be queued and served when the container wakes up. Docs↗
+
+Restart Policy
+Configure what to do when the process exits. Docs↗
+On Failure
+
+Restart the container if it exits with a non-zero exit code.
 
 
+Number of times to try and restart the service if it stopped due to an error.
+Max restart retries
+10
+Config-as-code
+Railway Config File
+Manage your build and deployment settings through a config file. Docs↗
+
+Add File Path
+Delete Service
+Deleting this service will permanently delete all its deployments and remove it from this environment. This cannot be undone.
+
+Delete service
+Source
+Networking
+Build
+Deploy
+Config-as-code
+Feature-flags
+Danger
 highline-adventures-angular | Railway

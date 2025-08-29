@@ -27,7 +27,7 @@ RUN npm install -g http-server
 RUN npm prune --production
 
 # Expose port
-EXPOSE $PORT
+EXPOSE 8081
 
 # Start the application on all interfaces
-CMD ["sh", "-c", "cd dist/highline-adventures-angular/browser && http-server . -p ${PORT:-8080} -a 0.0.0.0 --cors -c-1"]
+CMD ["sh", "-c", "cd dist/highline-adventures-angular/browser && http-server . -p 8081 -a 0.0.0.0 --cors -c-1"]
