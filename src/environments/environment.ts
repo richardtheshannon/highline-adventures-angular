@@ -9,7 +9,7 @@ export const environment = {
     appId: 'your-firebase-app-id'
   },
   googleCalendar: {
-    apiKey: 'AIzaSyAAJjNBQUmFamoMOdRiFvEtc6dr63hx1aI',
+    apiKey: 'PLACEHOLDER_FOR_LOCAL_DEV', // Set actual key in Railway environment variables
     calendarId: 'richard@highlineadventures.com'
   },
   vapid: {
