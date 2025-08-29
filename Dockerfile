@@ -11,6 +11,12 @@ RUN npm ci
 # Copy source code
 COPY . .
 
+# Replace environment variables in the production environment file
+ARG FIREBASE_API_KEY
+ARG GOOGLE_CALENDAR_API_KEY
+RUN sed -i "s/\${FIREBASE_API_KEY}/${FIREBASE_API_KEY}/g" src/environments/environment.prod.ts
+RUN sed -i "s/\${GOOGLE_CALENDAR_API_KEY}/${GOOGLE_CALENDAR_API_KEY}/g" src/environments/environment.prod.ts
+
 # Build the Angular app
 RUN npm run build
 

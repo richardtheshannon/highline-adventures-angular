@@ -1,7 +1,7 @@
 export const environment = {
   production: true,
   firebase: {
-    apiKey: process.env['FIREBASE_API_KEY'] || '',
+    apiKey: '${FIREBASE_API_KEY}',
     authDomain: 'daily-mainfest.firebaseapp.com',
     projectId: 'daily-mainfest',
     storageBucket: 'daily-mainfest.appspot.com',
@@ -9,7 +9,7 @@ export const environment = {
     appId: 'your-firebase-app-id'
   },
   googleCalendar: {
-    apiKey: process.env['GOOGLE_CALENDAR_API_KEY'] || '',
+    apiKey: '${GOOGLE_CALENDAR_API_KEY}',
     calendarId: 'richard@highlineadventures.com'
   },
   vapid: {
