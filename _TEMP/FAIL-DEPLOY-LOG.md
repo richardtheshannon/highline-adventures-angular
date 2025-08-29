@@ -41,8 +41,8 @@ History
 
 highline-adventures-angular
 /
-dc66897
-Aug 28, 2025, 6:44 PM
+5b2886b
+Aug 28, 2025, 6:50 PM
 Failed
 
 Get Help
@@ -52,17 +52,9 @@ Build Logs
 Deploy Logs
 Search build logs
 
-You reached the start of the range
-Aug 28, 2025, 6:44 PM
- 
-[Region: us-west1]
-==============
-Using Nixpacks
-==============
-
-context: 14jz-ezMa
+context: zwtr-AyeL
 ╔═════ Nixpacks v1.38.0 ═════╗
-║ setup      │ nodejs_20     ║
+║ setup      │ nodejs_22     ║
 ║────────────────────────────║
 ║ install    │ npm ci        ║
 ║────────────────────────────║
@@ -77,45 +69,49 @@ load build definition from Dockerfile
 
 internal
 load metadata for ghcr.io/railwayapp/nixpacks:ubuntu-1745885067
-434ms
+127ms
 
 internal
 load .dockerignore
-0ms
+1ms
 
 internal
 load build context
 0ms
 
 stage-0
+WORKDIR /app/ cached
+0ms
+
+stage-0
 COPY .nixpacks/nixpkgs-ffeebf0acf3ae8b29f8c7049cd911b9636efd7e7.nix .nixpacks/nixpkgs-ffeebf0acf3ae8b29f8c7049cd911b9636efd7e7.nix
-682ms
+25ms
 
 stage-0
 RUN nix-env -if .nixpacks/nixpkgs-ffeebf0acf3ae8b29f8c7049cd911b9636efd7e7.nix && nix-collect-garbage -d
-34s
+35s
 29 store paths deleted, 247.82 MiB freed
 
 stage-0
 COPY . /app/.
-301ms
+69ms
 
 stage-0
 RUN npm ci
-12s
+13s
 Run `npm audit` for details.
 
 stage-0
 COPY . /app/.
-247ms
+246ms
 
 stage-0
 RUN npm run build
-247ms
+410ms
 npm warn config production Use `--omit=dev` instead.
 > highline-adventures-angular@0.0.0 build
 > ng build
-Node.js version v20.18.1 detected.
+Node.js version v22.11.0 detected.
 The Angular CLI requires a minimum Node.js version of v20.19 or v22.12.
 Please update your Node.js version or visit https://nodejs.org/ for additional instructions.
 Dockerfile:27
@@ -127,6 +123,9 @@ Dockerfile:27
 29 |
 -------------------
 ERROR: failed to build: failed to solve: process "/bin/bash -ol pipefail -c npm run build" did not complete successfully: exit code: 3
+Error: Docker build failed
+You reached the end of the range
+Aug 28, 2025, 6:51 PM
 
 
 highline-adventures-angular | Railway
