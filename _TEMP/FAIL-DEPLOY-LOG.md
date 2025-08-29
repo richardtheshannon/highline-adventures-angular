@@ -41,8 +41,8 @@ History
 
 highline-adventures-angular
 /
-f59e902
-Aug 28, 2025, 6:42 PM
+dc66897
+Aug 28, 2025, 6:44 PM
 Failed
 
 Get Help
@@ -52,11 +52,15 @@ Build Logs
 Deploy Logs
 Search build logs
 
+You reached the start of the range
+Aug 28, 2025, 6:44 PM
+ 
+[Region: us-west1]
 ==============
 Using Nixpacks
 ==============
 
-context: zwtr-AyeL
+context: 14jz-ezMa
 ╔═════ Nixpacks v1.38.0 ═════╗
 ║ setup      │ nodejs_20     ║
 ║────────────────────────────║
@@ -73,7 +77,7 @@ load build definition from Dockerfile
 
 internal
 load metadata for ghcr.io/railwayapp/nixpacks:ubuntu-1745885067
-121ms
+434ms
 
 internal
 load .dockerignore
@@ -84,38 +88,45 @@ load build context
 0ms
 
 stage-0
-WORKDIR /app/ cached
-0ms
-
-stage-0
 COPY .nixpacks/nixpkgs-ffeebf0acf3ae8b29f8c7049cd911b9636efd7e7.nix .nixpacks/nixpkgs-ffeebf0acf3ae8b29f8c7049cd911b9636efd7e7.nix
-12ms
+682ms
 
 stage-0
 RUN nix-env -if .nixpacks/nixpkgs-ffeebf0acf3ae8b29f8c7049cd911b9636efd7e7.nix && nix-collect-garbage -d
-37s
+34s
 29 store paths deleted, 247.82 MiB freed
 
 stage-0
 COPY . /app/.
-79ms
+301ms
 
 stage-0
 RUN npm ci
-1s
-npm error A complete log of this run can be found in: /root/.npm/_logs/2025-08-29T01_42_55_594Z-debug-0.log
-Dockerfile:23
+12s
+Run `npm audit` for details.
+
+stage-0
+COPY . /app/.
+247ms
+
+stage-0
+RUN npm run build
+247ms
+npm warn config production Use `--omit=dev` instead.
+> highline-adventures-angular@0.0.0 build
+> ng build
+Node.js version v20.18.1 detected.
+The Angular CLI requires a minimum Node.js version of v20.19 or v22.12.
+Please update your Node.js version or visit https://nodejs.org/ for additional instructions.
+Dockerfile:27
 -------------------
-21 |     ENV NIXPACKS_PATH=/app/node_modules/.bin:$NIXPACKS_PATH
-22 |     COPY . /app/.
-23 | >>> RUN --mount=type=cache,id=s/d2a08cb5-77bd-428c-b37f-b878db849a54-/root/npm,target=/root/.npm npm ci
-24 |
 25 |     # build phase
+26 |     COPY . /app/.
+27 | >>> RUN --mount=type=cache,id=s/d2a08cb5-77bd-428c-b37f-b878db849a54-node_modules/cache,target=/app/node_modules/.cache npm run build
+28 |
+29 |
 -------------------
-ERROR: failed to build: failed to solve: process "/bin/bash -ol pipefail -c npm ci" did not complete successfully: exit code: 1
-Error: Docker build failed
-You reached the end of the range
-Aug 28, 2025, 6:42 PM
+ERROR: failed to build: failed to solve: process "/bin/bash -ol pipefail -c npm run build" did not complete successfully: exit code: 3
 
 
 highline-adventures-angular | Railway
