@@ -20,11 +20,6 @@ RUN sed -i "s/\${GOOGLE_CALENDAR_API_KEY}/${GOOGLE_CALENDAR_API_KEY}/g" src/envi
 # Build the Angular app
 RUN npm run build
 
-# Debug: List the build output to understand the structure
-RUN ls -la dist/
-RUN ls -la dist/highline-adventures-angular/ || echo "Directory doesn't exist, checking alternatives..."
-RUN find dist/ -name "index.html" -type f || echo "No index.html found"
-
 # Install http-server globally for production (better Railway compatibility)
 RUN npm install -g http-server
 
@@ -35,4 +30,4 @@ RUN npm prune --production
 EXPOSE $PORT
 
 # Start the application on all interfaces with SPA fallback
-CMD ["sh", "-c", "cd dist/highline-adventures-angular && http-server . -p ${PORT:-8080} -a 0.0.0.0 --cors -c-1 --proxy http://localhost:${PORT:-8080}?"]
+CMD ["sh", "-c", "cd dist/highline-adventures-angular/browser && http-server . -p ${PORT:-8080} -a 0.0.0.0 --cors -c-1 --proxy http://localhost:${PORT:-8080}?"]
