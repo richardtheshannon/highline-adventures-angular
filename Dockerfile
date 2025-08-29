@@ -5,8 +5,8 @@ WORKDIR /app
 # Copy package files
 COPY package*.json ./
 
-# Install dependencies
-RUN npm ci --only=production
+# Install all dependencies (including dev dependencies for build)
+RUN npm ci
 
 # Copy source code
 COPY . .
@@ -14,8 +14,11 @@ COPY . .
 # Build the Angular app
 RUN npm run build
 
-# Install serve globally
+# Install serve globally for production
 RUN npm install -g serve
+
+# Remove dev dependencies to reduce image size
+RUN npm prune --production
 
 # Expose port
 EXPOSE $PORT
